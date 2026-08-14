@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dojo Readiness Test — Enter The Dojo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1A1A1A;
+    --bg-card:#212019;
+    --cream:#F0EDE6;
+    --cream-dim:#A9A395;
+    --olive:#6B7355;
+    --olive-bright:#828C69;
+    --rule:rgba(240,237,230,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .seal-row{
+    display:flex;
+    justify-content:center;
+    padding-top:64px;
+  }
+
+  .seal{
+    width:96px;
+    height:96px;
+  }
+
+  .seal polygon{
+    fill:none;
+    stroke:var(--olive-bright);
+    stroke-width:1.4;
+  }
+
+  .seal .inner-mark{
+    stroke:var(--cream-dim);
+    stroke-width:1;
+    fill:none;
+  }
+
+  .hero{
+    padding:28px 0 8px;
+    text-align:center;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:12px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--olive-bright);
+    margin:0 0 22px;
+  }
+
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:700;
+    font-size:clamp(2.4rem, 6vw, 3.4rem);
+    line-height:1.08;
+    letter-spacing:0.01em;
+    margin:0 0 22px;
+    text-transform:uppercase;
+  }
+
+  .sub{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(1.15rem, 3vw, 1.4rem);
+    color:var(--cream-dim);
+    margin:0 0 40px;
+    letter-spacing:0.02em;
+  }
+
+  .rule{
+    width:64px;
+    height:2px;
+    background:var(--olive);
+    margin:0 auto 40px;
+  }
+
+  .lede{
+    font-size:17px;
+    color:var(--cream);
+    text-align:center;
+    max-width:520px;
+    margin:0 auto 44px;
+  }
+
+  .cta-teaser{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:19px;
+    color:var(--olive-bright);
+    text-align:center;
+    margin:0 0 44px;
+  }
+
+  .manifest{
+    list-style:none;
+    padding:0;
+    margin:0 0 48px;
+    border-top:1px solid var(--rule);
+  }
+
+  .manifest li{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    padding:18px 4px;
+    border-bottom:1px solid var(--rule);
+    font-size:15.5px;
+  }
+
+  .manifest .num{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--olive-bright);
+    flex-shrink:0;
+    width:22px;
+  }
+
+  .capture{
+    background:var(--bg-card);
+    border:1px solid var(--rule);
+    padding:40px 32px;
+    margin-bottom:56px;
+  }
+
+  .capture-label{
+    display:block;
+    font-size:13px;
+    letter-spacing:0.06em;
+    color:var(--cream-dim);
+    margin-bottom:14px;
+    text-align:center;
+  }
+
+  form.email-capture{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .input--hidden{
+    display:none !important;
+  }
+
+  input[type="email"], input[type="text"]{
+    width:100%;
+    background:var(--bg);
+    border:1px solid var(--rule);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-size:16px;
+    padding:16px 18px;
+  }
+
+  input[type="email"]::placeholder, input[type="text"]::placeholder{
+    color:var(--cream-dim);
+  }
+
+  input[type="email"]:focus, input[type="text"]:focus{
+    outline:2px solid var(--olive-bright);
+    outline-offset:2px;
+  }
+
+  button.submit{
+    width:100%;
+    background:var(--olive);
+    color:var(--cream);
+    border:none;
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:18px 20px;
+    cursor:pointer;
+    transition:background 0.2s ease;
+  }
+
+  button.submit:hover{
+    background:var(--olive-bright);
+  }
+
+  button.submit:focus-visible{
+    outline:2px solid var(--cream);
+    outline-offset:3px;
+  }
+
+  .fine{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--cream-dim);
+    margin-top:16px;
+  }
+
+  .credibility{
+    text-align:center;
+    padding-bottom:72px;
+  }
+
+  .credibility p{
+    font-size:14px;
+    color:var(--cream-dim);
+    max-width:440px;
+    margin:0 auto;
+  }
+
+  .credibility .name{
+    color:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:16px;
+    display:block;
+    margin-top:10px;
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .hero, .lede, .manifest, .capture, .credibility{
+      animation:rise 0.7s ease both;
+    }
+    .hero{ animation-delay:0.05s; }
+    .lede{ animation-delay:0.15s; }
+    .manifest{ animation-delay:0.25s; }
+    .capture{ animation-delay:0.35s; }
+    .credibility{ animation-delay:0.45s; }
+  }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  @media (max-width:480px){
+    .capture{ padding:32px 22px; }
+    .seal-row{ padding-top:44px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="seal-row">
+    <svg class="seal" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="50,4 79,17 96,46 88,77 62,96 38,96 12,77 4,46 21,17"></polygon>
+      <line class="inner-mark" x1="50" y1="30" x2="50" y2="70"></line>
+      <line class="inner-mark" x1="32" y1="50" x2="68" y2="50"></line>
+    </svg>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">Enter The Dojo</p>
+    <h1>Are You Actually<br>Ready For The Dojo?</h1>
+  </header>
+
+  <div class="rule"></div>
+
+  <p class="lede">
+    You can be strong and still be unprepared.<br>
+    This is the test that tells the difference.
+  </p>
+
+  <ul class="manifest">
+    <li><span class="num">01</span><span>15 tests. 20 minutes. No equipment needed.</span></li>
+    <li><span class="num">02</span><span>The 5 qualities that decide ready or not.</span></li>
+    <li><span class="num">03</span><span>Your weakest links, exposed before they cost you.</span></li>
+  </ul>
+
+  <div class="capture">
+    <label class="capture-label" for="EMAIL">Enter your email to get instant access</label>
+
+    <form id="sib-form" class="email-capture" method="POST" action="https://55a59ef0.sibforms.com/serve/MUIFABwYnYtrphP34YfseWJXlwYpj3vm-CW5jXs0WZxEYaPkTjhmLli1Li7Ft8vaa-ZHJvWKviUe31wCAijmznD9HPSZ17lw5prGH_mhsvuVjGUNLPpFAqYlocnZgtb_pAZUr-1mJxz04YazJuS8KQ5ixbGRCBRp-aXzGPNvOX3elXin_WOgeJYmqiyVM2GUfhUFg106pBUM5OswiA==">
+      <input type="email" id="EMAIL" name="EMAIL" placeholder="you@email.com" autocomplete="off" data-required="true" required>
+      <button type="submit" class="submit">Get The Free Test &rarr;</button>
+
+      <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="locale" value="en">
+      <input type="hidden" name="html_type" value="simple">
+    </form>
+
+    <p class="fine">Delivered straight to your inbox. One file. Fifteen tests. Nothing else.</p>
+  </div>
+
+  <div class="credibility">
+    <p>
+      Built by a coach who was fit, strong, and athletic.<br>
+      The mats exposed him anyway. This is what he built to fix it.
+      <span class="name">&mdash; Ivan Zoric</span>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
