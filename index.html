@@ -216,11 +216,32 @@
     outline-offset:3px;
   }
 
+  button.submit:disabled{
+    opacity:0.7;
+    cursor:default;
+  }
+
   .fine{
     text-align:center;
     font-size:12.5px;
     color:var(--cream-dim);
     margin-top:16px;
+  }
+
+  .success-headline{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:24px;
+    color:var(--cream);
+    text-align:center;
+    margin:0 0 10px;
+  }
+
+  .success-sub{
+    font-size:14px;
+    color:var(--cream-dim);
+    text-align:center;
+    margin:0;
   }
 
   .credibility{
@@ -297,7 +318,7 @@
     <li><span class="num">03</span><span>Your weakest links, exposed before they cost you.</span></li>
   </ul>
 
-  <div class="capture">
+  <div class="capture" id="captureBox">
     <label class="capture-label" for="EMAIL">Enter your email to get instant access</label>
 
     <form id="sib-form" class="email-capture" method="POST" action="https://55a59ef0.sibforms.com/serve/MUIFABwYnYtrphP34YfseWJXlwYpj3vm-CW5jXs0WZxEYaPkTjhmLli1Li7Ft8vaa-ZHJvWKviUe31wCAijmznD9HPSZ17lw5prGH_mhsvuVjGUNLPpFAqYlocnZgtb_pAZUr-1mJxz04YazJuS8KQ5ixbGRCBRp-aXzGPNvOX3elXin_WOgeJYmqiyVM2GUfhUFg106pBUM5OswiA==">
@@ -319,8 +340,38 @@
       <span class="name">&mdash; Ivan Zoric</span>
     </p>
   </div>
-
 </div>
+
+<script>
+(function(){
+  var form = document.getElementById('sib-form');
+  var box = document.getElementById('captureBox');
+  var btn = form.querySelector('button.submit');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('EMAIL').value.trim();
+    if(!email) return;
+
+    btn.disabled = true;
+    btn.textContent = 'SENDING…';
+
+    var data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: data
+    }).then(showSuccess).catch(showSuccess);
+  });
+
+  function showSuccess(){
+    box.innerHTML =
+      '<p class="success-headline">Check your inbox.</p>' +
+      '<p class="success-sub">Your test is on its way — give it a minute.</p>';
+  }
+})();
+</script>
 
 </body>
 </html>
